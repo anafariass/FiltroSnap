@@ -1,0 +1,19 @@
+{
+  "filters": [
+    {
+      "id": 1,
+      "name": "Filtro Gato",
+      "image": "https://i.imgur.com/7kceK0D.png"
+    },
+    {
+      "id": 2,
+      "name": "Filtro Óculos",
+      "image": "https://i.imgur.com/Np6A2lB.png"
+    },
+    {
+      "id": 3,
+      "name": "Filtro Coroa",
+      "image": "https://i.imgur.com/4AiXzf8.png"
+    }
+  ]
+}
