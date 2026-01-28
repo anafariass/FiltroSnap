@@ -1,0 +1,9 @@
+{  
+  "GATO": { "scale": 1.1, "offsetX": 0, "offsetY": 0 },
+  "ORELHA": { "scale": 2.5, "offsetX": 0, "offsetY": -150 },
+  "OCULOS": { "scale": 0.9, "offsetX": 0, "offsetY": -80 },
+  "BIGODE": { "scale": 0.8, "offsetX": 0, "offsetY": -20 },
+  "CHAPEU": { "scale": 0.85, "offsetX": 0, "offsetY": -160 },
+  "COROA": { "scale": 0.45, "offsetX": 0, "offsetY": -140 },
+  "CORACOES": { "scale": 0.7, "offsetX": 0, "offsetY": -150 }
+}
