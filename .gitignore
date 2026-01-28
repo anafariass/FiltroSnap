@@ -1,47 +1,46 @@
-# Learn more https://docs.github.com/en/get-started/getting-started-with-git/ignoring-files
-
-# dependencies
+# Modulos e dependencias
 node_modules/
 package-lock.json
+yarn.lock
 
-# VS Code
+# Variaveis de ambiente
+.env
+.env.local
+.env.*.local
+
+# Arquivos do sistema
+.DS_Store
+Thumbs.db
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# IDEs e editores
 .vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Build e dist
+dist/
+build/
+
+# Uploads de fotos
+uploads/
 
 # Expo
 .expo/
-dist/
-web-build/
-expo-env.d.ts
+.expo-shared/
+.expo-internal/
 
-# Native
-.kotlin/
-*.orig.*
-*.jks
-*.p8
-*.p12
-*.key
-*.mobileprovision
+# Banco de dados
+*.db
+*.sqlite
+*.sqlite3
 
-# Metro
-.metro-health-check*
-
-# debug
-npm-debug.*
-yarn-debug.*
-yarn-error.*
-
-# macOS
-.DS_Store
-*.pem
-
-# local env files
-.env*.local
-
-# typescript
-*.tsbuildinfo
-
-app-example
-
-# generated native folders
-/ios
-/android
+# Arquivos temporarios
+*.tmp
+*.temp
+.tmp/
