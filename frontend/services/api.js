@@ -2,7 +2,7 @@ import axios from 'axios';
 import API_URL from '../config';
 import { getFilterConfig } from '../utils/filterConfig';
 
-// Configuracao do axios com o servidor do backend
+// conexão padrão com o endereço do meu servidor
 const api = axios.create({
   baseURL: API_URL,
   timeout: 30000,
@@ -76,22 +76,26 @@ export const uploadFoto = async (photoUri, nome, filtro) => {
     console.log('Nome:', nome);
     console.log('Filtro:', filtro);
 
-    // Busca a imagem como blob
+// app vai no endereço da foto dentro do celular e lê os dados dela
     const response = await fetch(photoUri);
-    const blob = await response.blob();
 
-    // Converte a imagem pra base64
+    const blob = await response.blob(); //"pacotinho" binário com os dados da foto
     const reader = new FileReader();
     
+
     return new Promise((resolve, reject) => {
+      //"reader" transforma a foto em um TEXTO gigante
       reader.onload = async () => {
         try {
           const base64 = reader.result;
           
-          console.log('Enviando para:', `${API_URL}/fotos/upload-base64`);
           
-          // Pega a configuração do filtro (tamanho e posição)
+          //pega o tamanho e posição do filtro q usamos
           const filterConfig = getFilterConfig(filtro);
+
+          // faz um post para o servidor com tudo dentro
+          console.log('Enviando para:', `${API_URL}/fotos/upload-base64`);
+
           console.log('FilterConfig obtido:', filterConfig);
           console.log('Filtro enviado:', filtro);
           
@@ -119,7 +123,8 @@ export const uploadFoto = async (photoUri, nome, filtro) => {
 
           const data = await uploadResponse.json();
           console.log('Upload bem-sucedido:', data);
-          resolve(data);
+          resolve(data); // devolve a resposta pro app
+
         } catch (error) {
           console.error('Erro no upload:', error);
           reject(error);
@@ -131,7 +136,7 @@ export const uploadFoto = async (photoUri, nome, filtro) => {
         reject(error);
       };
 
-      reader.readAsDataURL(blob);
+      reader.readAsDataURL(blob);// iniciar a conversão da foto
     });
   } catch (error) {
     console.error('Erro ao processar upload:', error);

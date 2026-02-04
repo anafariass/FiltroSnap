@@ -4,10 +4,10 @@ import {
   Text,
   TouchableOpacity,
   StyleSheet,
-  SafeAreaView,
   Alert,
   ActivityIndicator,
 } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import FontAwesome from '@react-native-vector-icons/fontawesome';
 import * as FileSystem from 'expo-file-system/legacy';
 import CameraScreen from './components/CameraScreen';
@@ -16,11 +16,13 @@ import { uploadFoto } from './services/api';
 import API_URL from './config';
 
 const App = () => {
-  // Controla qual tela está ativa (câmera ou galeria)
+  // saber se estamos na tela da 'camera' ou 'gallery'
   const [currentScreen, setCurrentScreen] = useState('gallery');
-  // Força a galeria a recarregar quando muda
+
+  // um "contador" que aumenta toda vez que salvamos uma foto, para a galeria saber que deve atualizar
   const [refreshGallery, setRefreshGallery] = useState(0);
-  // Mostra loading quando está salvando foto
+
+  // variável que fica "verdadeira" enquanto a foto está viajando para o servidor
   const [isUploading, setIsUploading] = useState(false);
 
   // Isso aqui salva a foto no servidor quando você tira
@@ -28,18 +30,21 @@ const App = () => {
     try {
       setIsUploading(true);
       
-      const fileName = `foto_${Date.now()}.jpg`;
+      const fileName = `foto_${Date.now()}.jpg`; // nome unico com data e hora.
       
-      console.log('Iniciando upload com Axios para:', `${API_URL}/fotos/upload`, 'com filtro:', photoData.filter);
+      console.log('Iniciando upload com Axios para:', `${API_URL}/fotos/upload`, 'com filtro:', photoData.filter); // chama api.js p levar a fota
       
-      // Envia a foto com o filtro pro backend
+      // envia a foto com o filtro pro backend
       const response = await uploadFoto(photoData.uri, fileName, photoData.filter);
       
       console.log('Resposta do upload:', response);
 
       Alert.alert('Sucesso', 'Foto salva com sucesso!');
+
       // Atualiza a galeria pra mostrar a nova foto
       setRefreshGallery(refreshGallery + 1);
+
+      // Volta pra tela da galeria
       setCurrentScreen('gallery');
     } catch (error) {
       Alert.alert('Erro', `Erro ao salvar: ${error.message}`);

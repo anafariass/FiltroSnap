@@ -1,6 +1,3 @@
-// Configuração centralizada de todos os filtros
-// Define tamanho e posição para o backend aplicar na foto salva
-
 export const FILTER_CONFIG = {
   GATO: {
     scale: 1.1, // 110%

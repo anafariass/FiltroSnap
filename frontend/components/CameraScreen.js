@@ -12,13 +12,16 @@ import FontAwesome from '@react-native-vector-icons/fontawesome';
 import { FILTERS, getFilterName } from '../utils/filters';
 
 const CameraScreen = ({ onPhotoTaken }) => {
-  // Referência pra controlar a câmera
+  // é como uma "âncora" p o app conseguir controlar a câmera
   const cameraRef = useRef(null);
-  // Gerencia permissão da câmera
+
+  // permite tirar fotinhas?
   const [permission, requestPermission] = useCameraPermissions();
-  // Filtro que tá selecionado
+
+  // guarda qual filtro está na tela agr
   const [currentFilter, setCurrentFilter] = useState(FILTERS.ORIGINAL);
-  // Guarda a foto tirada
+
+  // guarda a foto p voce confirmar ou descartare
   const [photoUri, setPhotoUri] = useState(null);
 
   // Isso aqui tira a foto
@@ -70,7 +73,7 @@ const CameraScreen = ({ onPhotoTaken }) => {
   if (!permission) {
     return <View />;
   }
-
+// se eu negar, mostra botão pedindo dnv
   if (!permission.granted) {
     return (
       <View style={styles.container}>
@@ -86,7 +89,7 @@ const CameraScreen = ({ onPhotoTaken }) => {
       </View>
     );
   }
-
+//tela de previw da foto tirada
   if (photoUri) {
     return (
       <View style={styles.container}>
@@ -165,9 +168,9 @@ const CameraScreen = ({ onPhotoTaken }) => {
       </View>
     );
   }
-
   return (
     <View style={styles.container}>
+      {/*componente q liga o sensor da camera*/}
       <CameraView
         ref={cameraRef}
         style={styles.camera}

@@ -20,6 +20,7 @@
     "expo-image-manipulator": "^14.0.8",
     "expo-image-picker": "^17.0.10",
     "react-native": "^0.83.1",
+    "react-native-safe-area-context": "~5.6.0",
     "react-native-view-shot": "^4.0.3",
     "react-native-web": "^0.21.2"
   }
